@@ -1,3 +1,5 @@
 export * from './NewProblemForm'
 export * from './NewSolutionForm'
+export * from './Solution'
+export * from './Problem'
 export * from './ProblemList'

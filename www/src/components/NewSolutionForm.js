@@ -1,17 +1,17 @@
 import React, {useCallback, useState} from 'react'
-import {useMutation, useQuery} from '@apollo/react-hooks'
-import {CREATE_SOLUTION, ALL_PROBLEMS} from '../context'
+import {useParams} from 'react-router-dom'
+import {useMutation} from '@apollo/react-hooks'
+import {CREATE_SOLUTION} from '../context'
 
 export const NewSolutionForm = () => {
-  const [problem, setProblem] = useState()
+  const {id} = useParams()
   const [author, setAuthor] = useState('')
   const [html, setHTML] = useState('')
   const [js, setJS] = useState('')
   const [css, setCSS] = useState('')
   // TODO: handle errors
-  const {loading: problemsLoading, data: problemsData} = useQuery(ALL_PROBLEMS)
   // TODO: loading indicator
-  const [createSolution, {loading}] = useMutation(CREATE_SOLUTION, {
+  const [createSolution] = useMutation(CREATE_SOLUTION, {
     refetchQueries: ['allProblems'],
   })
 
@@ -21,7 +21,7 @@ export const NewSolutionForm = () => {
 
       createSolution({
         variables: {
-          id: problem || problemsData?.problems[0].id, // FIXME: use default value on el
+          id,
           author,
           html,
           js,
@@ -33,32 +33,17 @@ export const NewSolutionForm = () => {
       setJS('')
       setCSS('')
     },
-    [createSolution, author, html, js, css, problem, problemsData],
+    [createSolution, author, html, js, css, id],
   )
 
-  const handleProblemChange = useCallback(e => setProblem(e.target.value), [])
   const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
   const handleHTMLChange = useCallback(e => setHTML(e.target.value), [])
   const handleJSChange = useCallback(e => setJS(e.target.value), [])
   const handleCSSChange = useCallback(e => setCSS(e.target.value), [])
 
-  if (problemsLoading || !problemsData.problems)
-    return <p>Loading problems...</p>
-
   return (
     <form onSubmit={handleSumbit}>
       Submit a solution:
-      <label>
-        <select onChange={handleProblemChange}>
-          {!loading &&
-            problemsData &&
-            problemsData.problems.map(({id, description}) => (
-              <option key={id} value={id}>
-                {description}
-              </option>
-            ))}
-        </select>
-      </label>
       <label>
         Author:
         <input

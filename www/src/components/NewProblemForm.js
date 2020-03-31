@@ -6,7 +6,7 @@ export const NewProblemForm = () => {
   const [author, setAuthor] = useState('')
   const [description, setDescription] = useState('')
   // TODO: loading indicator
-  const [createProblem, {loading}] = useMutation(CREATE_PROBLEM, {
+  const [createProblem] = useMutation(CREATE_PROBLEM, {
     refetchQueries: ['allProblems'],
   })
 

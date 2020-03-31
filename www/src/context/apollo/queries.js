@@ -5,6 +5,15 @@ export const ALL_PROBLEMS = gql`
     problems(orderBy: createdAt_DESC) {
       id
       description
+    }
+  }
+`
+
+export const PROBLEM = gql`
+  query problem($id: ID!) {
+    problem(where: {id: $id}) {
+      id
+      description
       solutions(orderBy: up_votes_DESC) {
         id
         author
