@@ -24,6 +24,22 @@ export const CREATE_SOLUTION = gql`
   }
 `
 
+export const UPVOTE_SOLUTION = gql`
+  mutation upvoteSolution($id: ID!, $up_votes: Int!) {
+    updateSolution(where: {id: $id}, data: {up_votes: $up_votes}) {
+      id
+    }
+  }
+`
+
+export const DOWNVOTE_SOLUTION = gql`
+  mutation downvoteSolution($id: ID!, $down_votes: Int!) {
+    updateSolution(where: {id: $id}, data: {down_votes: $down_votes}) {
+      id
+    }
+  }
+`
+
 export const CREATE_PROBLEM = gql`
   mutation createProblem($author: String, $description: String!) {
     createProblem(

@@ -8,6 +8,8 @@ export const ALL_PROBLEMS = gql`
       solutions {
         id
         author
+        up_votes
+        down_votes
       }
     }
   }
