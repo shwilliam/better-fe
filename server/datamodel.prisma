@@ -1,0 +1,25 @@
+type Problem {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  author: String
+  description: String!
+  tags: [String] @scalarList(strategy: RELATION)
+  boilerplate: Code
+  solutions: [Solution]
+}
+
+type Code {
+  id: ID! @id
+  js: String
+  html: String
+  css: String
+}
+
+type Solution {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  author: String
+  code: Code!
+  up_votes: Int! @default(value: 0)
+  down_votes: Int! @default(value: 0)
+}
