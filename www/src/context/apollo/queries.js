@@ -2,10 +2,10 @@ import {gql} from 'apollo-boost'
 
 export const ALL_PROBLEMS = gql`
   query allProblems {
-    problems {
+    problems(orderBy: createdAt_DESC) {
       id
       description
-      solutions {
+      solutions(orderBy: up_votes_DESC) {
         id
         author
         up_votes
