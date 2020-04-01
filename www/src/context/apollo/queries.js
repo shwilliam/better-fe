@@ -14,11 +14,21 @@ export const PROBLEM = gql`
     problem(where: {id: $id}) {
       id
       description
+      boilerplate {
+        html
+        js
+        css
+      }
       solutions(orderBy: up_votes_DESC) {
         id
         author
         up_votes
         down_votes
+        code {
+          html
+          js
+          css
+        }
       }
     }
   }

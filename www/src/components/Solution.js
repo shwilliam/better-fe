@@ -2,7 +2,7 @@ import React, {useCallback} from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {UPVOTE_SOLUTION, DOWNVOTE_SOLUTION} from '../context'
 
-export const Solution = ({id, author, upVotes, downVotes}) => {
+export const Solution = ({id, author, upVotes, downVotes, onSelect}) => {
   const [upvoteSolution] = useMutation(UPVOTE_SOLUTION, {
     refetchQueries: ['problem'],
   })
@@ -25,10 +25,16 @@ export const Solution = ({id, author, upVotes, downVotes}) => {
       },
     })
   }, [id, downvoteSolution, downVotes])
+  const handleSelect = useCallback(() => {
+    onSelect(id)
+  }, [id, onSelect])
 
   return (
     <li>
       <p>{author}</p>
+
+      <button onClick={handleSelect}>Load solution</button>
+
       <button onClick={upvote}>up vote ({upVotes})</button>
       <button onClick={downvote}>down vote ({downVotes})</button>
     </li>

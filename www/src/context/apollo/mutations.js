@@ -41,12 +41,19 @@ export const DOWNVOTE_SOLUTION = gql`
 `
 
 export const CREATE_PROBLEM = gql`
-  mutation createProblem($author: String, $description: String!) {
+  mutation createProblem(
+    $author: String
+    $description: String!
+    $html: String
+    $js: String
+    $css: String
+  ) {
     createProblem(
       data: {
         author: $author
         description: $description
-        # TODO: handle code boiler
+        boilerplate: {create: {html: $html, js: $js, css: $css}}
+        # TODO: handle tags
       }
     ) {
       id
