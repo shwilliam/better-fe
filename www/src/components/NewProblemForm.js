@@ -49,33 +49,40 @@ export const NewProblemForm = () => {
   )
 
   return (
-    <Form onSubmit={handleSumbit}>
-      <TextInput
-        id="new-problem-editor-author-input"
-        labelText="Author (optional)"
-        placeholder="Jane Doe"
-        value={author}
-        onChange={handleAuthorChange}
-      />
-      <TextInput
-        id="new-problem-editor-description-input"
-        labelText="Description"
-        placeholder="Center div in div"
-        value={description}
-        onChange={handleDescriptionChange}
-      />
-      <section className="editor">
-        <Preview js={js} html={html} css={css} />
-        <Editor
-          html={html}
-          js={js}
-          css={css}
-          onHtmlChange={handleHTMLChange}
-          onJsChange={handleJSChange}
-          onCssChange={handleCSSChange}
+    <>
+      <h2>New Problem</h2>
+
+      <Form onSubmit={handleSumbit}>
+        <TextInput
+          id="new-problem-editor-author-input"
+          labelText="Author (optional)"
+          placeholder="Jane Doe"
+          value={author}
+          onChange={handleAuthorChange}
         />
-      </section>
-      <Button type="submit">Submit</Button>
-    </Form>
+        <TextInput
+          id="new-problem-editor-description-input"
+          labelText="Description"
+          placeholder="Center div in div"
+          value={description}
+          onChange={handleDescriptionChange}
+        />
+        <section className="editor">
+          <Preview js={js} html={html} css={css} />
+          <Editor
+            html={html}
+            js={js}
+            css={css}
+            onHtmlChange={handleHTMLChange}
+            onJsChange={handleJSChange}
+            onCssChange={handleCSSChange}
+          />
+        </section>
+
+        <div className="submit__actions">
+          <Button type="submit">Submit</Button>
+        </div>
+      </Form>
+    </>
   )
 }

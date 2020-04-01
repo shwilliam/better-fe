@@ -10,7 +10,7 @@ export const Preview = ({html, js, css}) => {
   return (
     <section className="preview">
       <style>{css}</style>
-      <Button kind="tertiary" className="preview__run" onClick={executeJS}>
+      <Button className="preview__run" onClick={executeJS}>
         Run script
       </Button>
       <div dangerouslySetInnerHTML={{__html: html}} />

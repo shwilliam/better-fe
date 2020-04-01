@@ -66,7 +66,9 @@ export const NewSolutionForm = ({boilerplate}) => {
         onChange={handleAuthorChange}
       />
 
-      <Button type="submit">Submit</Button>
+      <div className="submit__actions">
+        <Button type="submit">Submit</Button>
+      </div>
     </Form>
   )
 }

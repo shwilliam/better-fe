@@ -19,25 +19,29 @@ export const ProblemList = () => {
   if (!data.problems?.length) return <p>No problems...</p>
 
   return (
-    <StructuredListWrapper>
-      <StructuredListHead>
-        <StructuredListRow head>
-          <StructuredListCell head>Author</StructuredListCell>
-          <StructuredListCell head>Published</StructuredListCell>
-          <StructuredListCell head>Description</StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
-      <StructuredListBody>
-        {data.problems.map(({id, createdAt, description, author}) => (
-          <StructuredListRow key={id}>
-            <StructuredListCell>{author}</StructuredListCell>
-            <StructuredListCell>{createdAt}</StructuredListCell>
-            <StructuredListCell noWrap>
-              <Link to={`/problems/${id}`}>{description}</Link>
-            </StructuredListCell>
+    <>
+      <h2>Problems</h2>
+
+      <StructuredListWrapper>
+        <StructuredListHead>
+          <StructuredListRow head>
+            <StructuredListCell head>Author</StructuredListCell>
+            <StructuredListCell head>Published</StructuredListCell>
+            <StructuredListCell head>Description</StructuredListCell>
           </StructuredListRow>
-        ))}
-      </StructuredListBody>
-    </StructuredListWrapper>
+        </StructuredListHead>
+        <StructuredListBody>
+          {data.problems.map(({id, createdAt, description, author}) => (
+            <StructuredListRow key={id}>
+              <StructuredListCell>{author}</StructuredListCell>
+              <StructuredListCell>{createdAt}</StructuredListCell>
+              <StructuredListCell noWrap>
+                <Link to={`/problems/${id}`}>{description}</Link>
+              </StructuredListCell>
+            </StructuredListRow>
+          ))}
+        </StructuredListBody>
+      </StructuredListWrapper>
+    </>
   )
 }

@@ -1,3 +1,9 @@
+.page__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
 .preview {
   position: relative;
   min-height: 150px;
@@ -10,12 +16,17 @@
 .preview__run {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
 }
 
 .editor__input-container {
   border: 2px solid #0353e9;
   border-top: none;
+}
+
+.submit__actions {
+  text-align: right;
+  margin: 1rem 0;
 }
 
 @media only screen and (min-width: 1080px) {

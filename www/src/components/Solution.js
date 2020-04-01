@@ -51,10 +51,12 @@ export const Solution = ({id, author, upVotes, downVotes, createdAt, code}) => {
           <Editor js={code.js} html={code.html} css={code.css} readOnly />
         </section>
 
-        <Button kind="danger" onClick={downvote}>
-          Dislike
-        </Button>
-        <Button onClick={upvote}>Like</Button>
+        <div className="submit__actions">
+          <Button kind="danger" onClick={downvote}>
+            Dislike
+          </Button>
+          <Button onClick={upvote}>Like</Button>
+        </div>
       </TableExpandedRow>
     </>
   )
