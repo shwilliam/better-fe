@@ -8,10 +8,10 @@ import {
   TableBody,
   TableExpandHeader,
 } from 'carbon-components-react'
-import {Solution} from './'
+import {SolutionListItem} from './'
 
-export const SolutionList = ({data, createdAt}) => (
-  <TableContainer title="Solutions" description={createdAt}>
+export const SolutionList = ({data}) => (
+  <TableContainer title="Solutions">
     <Table>
       <TableHead>
         <TableRow>
@@ -24,7 +24,7 @@ export const SolutionList = ({data, createdAt}) => (
       </TableHead>
       <TableBody>
         {data.map(({id, author, up_votes, down_votes, createdAt, code}) => (
-          <Solution
+          <SolutionListItem
             key={id}
             id={id}
             upVotes={up_votes}

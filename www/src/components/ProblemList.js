@@ -1,7 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {useQuery} from '@apollo/react-hooks'
-import {ALL_PROBLEMS} from '../context'
 import {
   StructuredListWrapper,
   StructuredListHead,
@@ -9,6 +7,8 @@ import {
   StructuredListBody,
   StructuredListCell,
 } from 'carbon-components-react'
+import {ALL_PROBLEMS} from '../context'
+import {ProblemListItem} from './'
 
 export const ProblemList = () => {
   // TODO: abstract queries/mutation to custom hooks
@@ -31,14 +31,14 @@ export const ProblemList = () => {
           </StructuredListRow>
         </StructuredListHead>
         <StructuredListBody>
-          {data.problems.map(({id, createdAt, description, author}) => (
-            <StructuredListRow key={id}>
-              <StructuredListCell>{author}</StructuredListCell>
-              <StructuredListCell>{createdAt}</StructuredListCell>
-              <StructuredListCell noWrap>
-                <Link to={`/problems/${id}`}>{description}</Link>
-              </StructuredListCell>
-            </StructuredListRow>
+          {data.problems.map(({id, description, author, createdAt}) => (
+            <ProblemListItem
+              key={id}
+              link={`/problems/${id}`}
+              createdAt={createdAt}
+              author={author}
+              description={description}
+            />
           ))}
         </StructuredListBody>
       </StructuredListWrapper>
