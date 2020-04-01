@@ -3,7 +3,8 @@ import {useParams, useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_SOLUTION} from '../context'
 import {useEditor} from '../hooks'
-import {Preview} from './'
+import {Button, Form, TextInput} from 'carbon-components-react'
+import {Preview, Editor} from './'
 
 export const NewSolutionForm = ({boilerplate}) => {
   const {id} = useParams()
@@ -47,48 +48,26 @@ export const NewSolutionForm = ({boilerplate}) => {
     <>
       <Preview js={js} html={html} css={css} />
 
-      <form className="editor" onSubmit={handleSumbit}>
-        <label className="editor__input-label">
-          HTML:
-          <textarea
-            className="editor__input --code"
-            name="HTML"
-            value={html}
-            onChange={handleHTMLChange}
-          />
-        </label>
-        <label className="editor__input-label">
-          JS:
-          <textarea
-            className="editor__input --code"
-            name="JS"
-            value={js}
-            onChange={handleJSChange}
-          />
-        </label>
-        <label className="editor__input-label">
-          CSS:
-          <textarea
-            className="editor__input --code"
-            name="CSS"
-            value={css}
-            onChange={handleCSSChange}
-          />
-        </label>
+      <Form onSubmit={handleSumbit}>
+        <Editor
+          html={html}
+          js={js}
+          css={css}
+          onHtmlChange={handleHTMLChange}
+          onJsChange={handleJSChange}
+          onCssChange={handleCSSChange}
+        />
 
-        <label className="editor__input-label --fullwidth">
-          Author (optional):
-          <input
-            className="editor__input"
-            type="text"
-            name="author"
-            value={author}
-            onChange={handleAuthorChange}
-          />
-        </label>
+        <TextInput
+          id="new-solution-editor-author-input"
+          labelText="Author (optional)"
+          placeholder="Jane Doe"
+          value={author}
+          onChange={handleAuthorChange}
+        />
 
-        <button type="submit">Submit</button>
-      </form>
+        <Button type="submit">Submit</Button>
+      </Form>
     </>
   )
 }

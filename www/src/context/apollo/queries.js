@@ -5,6 +5,8 @@ export const ALL_PROBLEMS = gql`
     problems(orderBy: createdAt_DESC) {
       id
       description
+      author
+      createdAt
     }
   }
 `

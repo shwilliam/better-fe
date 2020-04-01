@@ -3,6 +3,8 @@ import {useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_PROBLEM} from '../context'
 import {useEditor} from '../hooks'
+import {Button, Form, TextInput} from 'carbon-components-react'
+import {Editor, Preview} from './'
 
 export const NewProblemForm = () => {
   const history = useHistory()
@@ -47,55 +49,31 @@ export const NewProblemForm = () => {
   )
 
   return (
-    <form className="editor" onSubmit={handleSumbit}>
-      <label className="editor__input-label">
-        HTML:
-        <textarea
-          className="editor__input --code"
-          name="HTML"
-          value={html}
-          onChange={handleHTMLChange}
-        />
-      </label>
-      <label className="editor__input-label">
-        JS:
-        <textarea
-          className="editor__input --code"
-          name="JS"
-          value={js}
-          onChange={handleJSChange}
-        />
-      </label>
-      <label className="editor__input-label">
-        CSS:
-        <textarea
-          className="editor__input --code"
-          name="CSS"
-          value={css}
-          onChange={handleCSSChange}
-        />
-      </label>
-      Submit a problem:
-      <label className="editor__input-label --fullwidth">
-        Author:
-        <input
-          type="text"
-          name="author"
-          value={author}
-          onChange={handleAuthorChange}
-        />
-      </label>
-      <label className="editor__input-label --fullwidth">
-        Description:
-        <input
-          type="text"
-          name="description"
-          value={description}
-          onChange={handleDescriptionChange}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <Form onSubmit={handleSumbit}>
+      <TextInput
+        id="new-problem-editor-author-input"
+        labelText="Author (optional)"
+        placeholder="Jane Doe"
+        value={author}
+        onChange={handleAuthorChange}
+      />
+      <TextInput
+        id="new-problem-editor-description-input"
+        labelText="Description"
+        placeholder="Center div in div"
+        value={description}
+        onChange={handleDescriptionChange}
+      />
+      <Preview js={js} html={html} css={css} />
+      <Editor
+        html={html}
+        js={js}
+        css={css}
+        onHtmlChange={handleHTMLChange}
+        onJsChange={handleJSChange}
+        onCssChange={handleCSSChange}
+      />
+      <Button type="submit">Submit</Button>
+    </Form>
   )
 }

@@ -1,32 +1,22 @@
 import React from 'react'
-import {ApolloContextProvider} from './context'
-import {ProblemList, Problem, NewProblemForm} from './components'
 import {
   BrowserRouter as Router,
-  Link,
-  Switch,
-  Route,
   Redirect,
+  Route,
+  Switch,
 } from 'react-router-dom'
+import {ApolloContextProvider} from './context'
+import {Header, NewProblemForm, Problem, ProblemList} from './components'
+import {Content} from 'carbon-components-react'
+import 'carbon-components/css/carbon-components.min.css'
+import './global.css'
 
 export const App = () => (
   <ApolloContextProvider>
     <Router>
-      <header>
-        <h1>Better FE</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/problems">Problems</Link>
-            </li>
-            <li>
-              <Link to="/new-problem">Submit problem</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
-      <main>
+      <Content>
         <Switch>
           <Route path="/new-problem">
             <NewProblemForm />
@@ -41,7 +31,7 @@ export const App = () => (
             <Redirect to="/problems" />
           </Route>
         </Switch>
-      </main>
+      </Content>
     </Router>
   </ApolloContextProvider>
 )

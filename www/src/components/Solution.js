@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {UPVOTE_SOLUTION, DOWNVOTE_SOLUTION} from '../context'
+import {Button} from 'carbon-components-react'
 
 export const Solution = ({id, author, upVotes, downVotes, onSelect}) => {
   const [upvoteSolution] = useMutation(UPVOTE_SOLUTION, {
@@ -33,10 +34,10 @@ export const Solution = ({id, author, upVotes, downVotes, onSelect}) => {
     <li>
       <p>{author}</p>
 
-      <button onClick={handleSelect}>Load solution</button>
+      <Button onClick={handleSelect}>Load solution</Button>
 
-      <button onClick={upvote}>up vote ({upVotes})</button>
-      <button onClick={downvote}>down vote ({downVotes})</button>
+      <Button onClick={upvote}>up vote ({upVotes})</Button>
+      <Button onClick={downvote}>down vote ({downVotes})</Button>
     </li>
   )
 }

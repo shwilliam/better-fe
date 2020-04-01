@@ -1,76 +1,14 @@
-body {
-  margin: 0;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: blue;
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-textarea {
-  resize: none;
-}
-
-/* TODO: use classes */
-h1 {
-  white-space: nowrap;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-main {
-  padding: 0 20px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav li {
-  margin: 0 20px;
-  white-space: nowrap;
-}
-
 .preview {
   position: relative;
-  height: 150px;
+  min-height: 150px;
+  background-color: #f4f4f4;
+  outline: 2px solid #0353e9;
+  outline-offset: -2px;
+  padding: 10px 15px;
 }
 
 .preview__run {
   position: absolute;
   top: 0;
   right: 0;
-}
-
-.editor {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.editor__input-label {
-  flex-basis: 33%;
-}
-
-.editor__input-label.--fullwidth {
-  flex-basis: 100%;
-}
-
-.editor__input.--code {
-  height: 200px;
 }
