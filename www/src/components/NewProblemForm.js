@@ -64,15 +64,17 @@ export const NewProblemForm = () => {
         value={description}
         onChange={handleDescriptionChange}
       />
-      <Preview js={js} html={html} css={css} />
-      <Editor
-        html={html}
-        js={js}
-        css={css}
-        onHtmlChange={handleHTMLChange}
-        onJsChange={handleJSChange}
-        onCssChange={handleCSSChange}
-      />
+      <section className="editor">
+        <Preview js={js} html={html} css={css} />
+        <Editor
+          html={html}
+          js={js}
+          css={css}
+          onHtmlChange={handleHTMLChange}
+          onJsChange={handleJSChange}
+          onCssChange={handleCSSChange}
+        />
+      </section>
       <Button type="submit">Submit</Button>
     </Form>
   )

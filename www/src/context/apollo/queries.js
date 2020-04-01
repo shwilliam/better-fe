@@ -16,6 +16,7 @@ export const PROBLEM = gql`
     problem(where: {id: $id}) {
       id
       description
+      createdAt
       boilerplate {
         html
         js
@@ -26,6 +27,7 @@ export const PROBLEM = gql`
         author
         up_votes
         down_votes
+        createdAt
         code {
           html
           js

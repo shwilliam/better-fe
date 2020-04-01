@@ -6,7 +6,13 @@ import {
   Switch,
 } from 'react-router-dom'
 import {ApolloContextProvider} from './context'
-import {Header, NewProblemForm, Problem, ProblemList} from './components'
+import {
+  Header,
+  NewProblemForm,
+  Problem,
+  ProblemList,
+  ProblemSolve,
+} from './components'
 import {Content} from 'carbon-components-react'
 import 'carbon-components/css/carbon-components.min.css'
 import './global.css'
@@ -20,6 +26,9 @@ export const App = () => (
         <Switch>
           <Route path="/new-problem">
             <NewProblemForm />
+          </Route>
+          <Route path="/problems/:id/solve">
+            <ProblemSolve />
           </Route>
           <Route path="/problems/:id">
             <Problem />

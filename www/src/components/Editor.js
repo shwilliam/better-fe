@@ -3,14 +3,15 @@ import {Tabs, Tab, TextArea} from 'carbon-components-react'
 
 export const Editor = ({
   html,
-  onHtmlChange,
+  onHtmlChange = () => {},
   js,
-  onJsChange,
+  onJsChange = () => {},
   css,
-  onCssChange,
+  onCssChange = () => {},
+  readOnly = false,
 }) => (
-  <>
-    <Tabs type="container">
+  <div className="editor__input-container">
+    <Tabs>
       <Tab id="html-editor" label="HTML">
         <TextArea
           labelText="HTML editor"
@@ -18,6 +19,7 @@ export const Editor = ({
           hideLabel={true}
           value={html}
           onChange={onHtmlChange}
+          readOnly={readOnly}
         />
       </Tab>
       <Tab id="js-editor" label="JS">
@@ -27,6 +29,7 @@ export const Editor = ({
           hideLabel={true}
           value={js}
           onChange={onJsChange}
+          readOnly={readOnly}
         />
       </Tab>
       <Tab id="css-editor" label="CSS">
@@ -38,8 +41,9 @@ export const Editor = ({
           hideLabel={true}
           value={css}
           onChange={onCssChange}
+          readOnly={readOnly}
         />
       </Tab>
     </Tabs>
-  </>
+  </div>
 )
