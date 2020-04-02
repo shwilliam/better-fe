@@ -14,16 +14,16 @@ export const Header = () => {
     history.push('/')
   }, [history])
   const navigateToRecentProblems = useCallback(() => {
-    history.push('/recent-problems')
+    history.push('/problems/recent')
   }, [history])
   const navigateToPopularProblems = useCallback(() => {
-    history.push('/popular-problems')
+    history.push('/problems/popular')
   }, [history])
   const navigateToProblems = useCallback(() => {
     history.push('/problems')
   }, [history])
   const navigateToNewProblem = useCallback(() => {
-    history.push('/new-problem')
+    history.push('/problem/new')
   }, [history])
 
   return (

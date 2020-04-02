@@ -1,4 +1,4 @@
 import React from 'react'
 import {AllProblemList} from '../../components'
 
-export const AllProblems = () => <AllProblemList />
+export const ProblemsAll = () => <AllProblemList />
