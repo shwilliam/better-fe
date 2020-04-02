@@ -11,6 +11,17 @@ export const ALL_PROBLEMS = gql`
   }
 `
 
+export const RECENT_PROBLEMS = gql`
+  query allProblems {
+    problems(orderBy: createdAt_DESC, first: 5) {
+      id
+      description
+      author
+      createdAt
+    }
+  }
+`
+
 export const PROBLEM = gql`
   query problem($id: ID!) {
     problem(where: {id: $id}) {

@@ -1,17 +1,13 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import {ApolloContextProvider} from './context'
 import {
   Header,
   NewProblemForm,
   Problem,
-  ProblemList,
   ProblemSolve,
+  AllProblemList,
+  RecentProblemList,
 } from './components'
 import {Content} from 'carbon-components-react'
 import 'carbon-components/css/carbon-components.min.css'
@@ -33,11 +29,25 @@ export const App = () => (
           <Route path="/problems/:id">
             <Problem />
           </Route>
+          <Route path="/recent-problems">
+            <RecentProblemList />
+          </Route>
           <Route path="/problems">
-            <ProblemList />
+            <AllProblemList />
           </Route>
           <Route path="/">
-            <Redirect to="/problems" />
+            <section className="hero">
+              <p className="hero__title">
+                Welcome to Better FE!{' '}
+                <span role="img" aria-label="">
+                  👋
+                </span>
+              </p>
+              <p className="hero__subtitle">
+                Post a frontend problem, share your solution & vote on the most
+                elegant approach
+              </p>
+            </section>
           </Route>
         </Switch>
       </Content>

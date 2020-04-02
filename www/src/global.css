@@ -60,6 +60,27 @@
   margin: 1rem 0;
 }
 
+.hero {
+  text-align: center;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.hero__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 2rem 0 1.5rem 0;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+}
+
 @media only screen and (min-width: 1080px) {
   .editor {
     display: flex;

@@ -10,6 +10,12 @@ import {
 
 export const Header = () => {
   const history = useHistory()
+  const navigateToHome = useCallback(() => {
+    history.push('/')
+  }, [history])
+  const navigateToRecentProblems = useCallback(() => {
+    history.push('/recent-problems')
+  }, [history])
   const navigateToProblems = useCallback(() => {
     history.push('/problems')
   }, [history])
@@ -26,18 +32,25 @@ export const Header = () => {
         <SkipToContent />
         <HeaderName
           className="clickable"
-          onClick={navigateToProblems}
+          onClick={navigateToHome}
           prefix="Better"
         >
           [FE]
         </HeaderName>
         <HeaderGlobalBar>
           <HeaderGlobalAction
+            onClick={navigateToRecentProblems}
+            className="nav__link"
+            aria-label="Recent problems"
+          >
+            Recent problems
+          </HeaderGlobalAction>
+          <HeaderGlobalAction
             onClick={navigateToProblems}
             className="nav__link"
-            aria-label="Problems"
+            aria-label="All problems"
           >
-            Problems
+            All problems
           </HeaderGlobalAction>
           <HeaderGlobalAction
             onClick={navigateToNewProblem}

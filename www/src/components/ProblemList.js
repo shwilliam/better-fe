@@ -10,7 +10,6 @@ import {
   DataTable,
   TableCell,
 } from 'carbon-components-react'
-import {ALL_PROBLEMS} from '../context'
 import {ProblemListItem} from './'
 import {format} from 'timeago.js'
 
@@ -20,21 +19,20 @@ const HEADERS = [
   {header: 'Description', key: 'description'},
 ]
 
-export const ProblemList = () => {
+export const ProblemList = ({title, query}) => {
   // TODO: abstract queries/mutation to custom hooks
-  const {loading, error, data} = useQuery(ALL_PROBLEMS)
+  const {loading, error, data} = useQuery(query)
   const formattedProblems = useMemo(
     () =>
-      data?.problems.map(({createdAt, ...p}) => ({
+      data?.problems.map(p => ({
         ...p,
-        createdAt: format(createdAt),
-      })),
+        createdAt: format(p?.createdAt),
+      })) || [],
     [data],
   )
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
-  if (!data.problems?.length) return <p>No problems...</p>
 
   return (
     <DataTable
@@ -48,7 +46,7 @@ export const ProblemList = () => {
         getTableProps,
         getTableContainerProps,
       }) => (
-        <TableContainer title="Recent problems" {...getTableContainerProps()}>
+        <TableContainer title={title} {...getTableContainerProps()}>
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>
@@ -70,7 +68,7 @@ export const ProblemList = () => {
                   {...getRowProps({row})}
                 >
                   {row.cells.map(({id, value}) => (
-                    <TableCell key={id}>{value}</TableCell>
+                    <TableCell key={id}>{value || 'Anon'}</TableCell>
                   ))}
                 </ProblemListItem>
               ))}

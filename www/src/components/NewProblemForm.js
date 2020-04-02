@@ -68,6 +68,7 @@ export const NewProblemForm = () => {
           placeholder="Center div in div"
           value={description}
           onChange={handleDescriptionChange}
+          required
         />
         <section className="editor">
           <Preview js={js} html={html} css={css} />
