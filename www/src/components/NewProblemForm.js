@@ -4,7 +4,7 @@ import {useMutation} from '@apollo/react-hooks'
 import {CREATE_PROBLEM} from '../context'
 import {useEditor} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
-import {Editor, Preview} from './'
+import {Editor, Preview, TagInput} from './'
 
 export const NewProblemForm = () => {
   const history = useHistory()
@@ -18,6 +18,7 @@ export const NewProblemForm = () => {
   } = useEditor()
   const [author, setAuthor] = useState('')
   const [description, setDescription] = useState('')
+  const [tags, setTags] = useState([])
   // TODO: loading indicator
   const [createProblem] = useMutation(CREATE_PROBLEM, {
     refetchQueries: ['allProblems'],
@@ -34,12 +35,13 @@ export const NewProblemForm = () => {
           html,
           js,
           css,
+          tags,
         },
       }).then(() => {
         history.push('/problems')
       })
     },
-    [createProblem, author, description, html, js, css, history],
+    [createProblem, author, description, html, js, css, tags, history],
   )
 
   const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
@@ -54,14 +56,6 @@ export const NewProblemForm = () => {
 
       <Form onSubmit={handleSumbit}>
         <TextInput
-          id="new-problem-editor-author-input"
-          className="input"
-          labelText="Author (optional)"
-          placeholder="Jane Doe"
-          value={author}
-          onChange={handleAuthorChange}
-        />
-        <TextInput
           id="new-problem-editor-description-input"
           className="input"
           labelText="Description"
@@ -70,6 +64,15 @@ export const NewProblemForm = () => {
           onChange={handleDescriptionChange}
           required
         />
+        <TextInput
+          id="new-problem-editor-author-input"
+          className="input"
+          labelText="Author (optional)"
+          placeholder="Jane Doe"
+          value={author}
+          onChange={handleAuthorChange}
+        />
+        <TagInput tags={tags} onChange={setTags} />
         <section className="editor">
           <Preview js={js} html={html} css={css} />
           <Editor

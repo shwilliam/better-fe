@@ -7,17 +7,19 @@ export const ALL_PROBLEMS = gql`
       description
       author
       createdAt
+      tags
     }
   }
 `
 
 export const RECENT_PROBLEMS = gql`
-  query allProblems {
+  query recentProblems {
     problems(orderBy: createdAt_DESC, first: 5) {
       id
       description
       author
       createdAt
+      tags
     }
   }
 `
@@ -28,6 +30,7 @@ export const PROBLEM = gql`
       id
       description
       createdAt
+      tags
       boilerplate {
         html
         js

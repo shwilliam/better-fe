@@ -15,6 +15,7 @@ import {format} from 'timeago.js'
 
 const HEADERS = [
   {header: 'Author', key: 'author'},
+  {header: 'Tags', key: 'tags'},
   {header: 'Published', key: 'createdAt'},
   {header: 'Description', key: 'description'},
 ]
@@ -26,7 +27,9 @@ export const ProblemList = ({title, query}) => {
     () =>
       data?.problems.map(p => ({
         ...p,
+        author: p?.author || 'Anon',
         createdAt: format(p?.createdAt),
+        tags: p?.tags.join(', '),
       })) || [],
     [data],
   )
@@ -68,7 +71,7 @@ export const ProblemList = ({title, query}) => {
                   {...getRowProps({row})}
                 >
                   {row.cells.map(({id, value}) => (
-                    <TableCell key={id}>{value || 'Anon'}</TableCell>
+                    <TableCell key={id}>{value}</TableCell>
                   ))}
                 </ProblemListItem>
               ))}

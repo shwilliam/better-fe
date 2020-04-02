@@ -47,13 +47,14 @@ export const CREATE_PROBLEM = gql`
     $html: String
     $js: String
     $css: String
+    $tags: [String!]
   ) {
     createProblem(
       data: {
         author: $author
         description: $description
         boilerplate: {create: {html: $html, js: $js, css: $css}}
-        # TODO: handle tags
+        tags: {set: $tags}
       }
     ) {
       id
