@@ -60,7 +60,7 @@ export const SolutionListItem = ({
       </TableExpandRow>
       <TableExpandedRow colSpan={5}>
         <section className="editor">
-          <Preview js={code.js} html={code.html} css={code.css} />
+          <Preview id={id} js={code.js} html={code.html} css={code.css} />
           <Editor js={code.js} html={code.html} css={code.css} readOnly />
         </section>
 

@@ -28,12 +28,13 @@
 }
 
 .preview {
-  position: relative;
+  width: 100%;
   min-height: 150px;
   background-color: #f4f4f4;
   outline: 2px solid #0353e9;
   outline-offset: -2px;
   padding: 10px 15px;
+  margin-bottom: -2px;
 }
 
 .preview__run {
@@ -90,6 +91,10 @@
 }
 
 @media only screen and (min-width: 1080px) {
+  .preview {
+    margin-bottom: 0;
+  }
+
   .editor {
     display: flex;
     flex-direction: row-reverse;

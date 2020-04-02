@@ -1,21 +1,29 @@
-import React, {useCallback} from 'react'
-import {Button} from 'carbon-components-react'
+import React, {useMemo} from 'react'
 
-export const Preview = ({html, js, css}) => {
-  const executeJS = useCallback(() => {
-    // TODO: catch errors
-    eval(js) // eslint-disable-line
-  }, [js])
+const generatePreviewMarkup = (html, js, css) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preview</title>
+  <style>${css}</style>
+</head>
+<body>
+${html}
+<script>${js}</script>
+</body>
+</html>
+`
+
+export const Preview = ({id, html, js, css}) => {
+  const markup = useMemo(() => generatePreviewMarkup(html, js, css), [
+    html,
+    js,
+    css,
+  ])
 
   return (
-    <section className="preview">
-      <style>{css}</style>
-      {js?.length > 0 && (
-        <Button className="preview__run" onClick={executeJS}>
-          Run script
-        </Button>
-      )}
-      <div dangerouslySetInnerHTML={{__html: html}} />
-    </section>
+    <iframe srcDoc={markup} title={`Preview ${id || ''}`} className="preview" />
   )
 }
