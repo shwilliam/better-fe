@@ -16,6 +16,9 @@ export const Header = () => {
   const navigateToRecentProblems = useCallback(() => {
     history.push('/recent-problems')
   }, [history])
+  const navigateToPopularProblems = useCallback(() => {
+    history.push('/popular-problems')
+  }, [history])
   const navigateToProblems = useCallback(() => {
     history.push('/problems')
   }, [history])
@@ -39,25 +42,32 @@ export const Header = () => {
         </HeaderName>
         <HeaderGlobalBar>
           <HeaderGlobalAction
-            onClick={navigateToRecentProblems}
-            className="nav__link"
-            aria-label="Recent problems"
-          >
-            Recent problems
-          </HeaderGlobalAction>
-          <HeaderGlobalAction
             onClick={navigateToProblems}
             className="nav__link"
             aria-label="All problems"
           >
-            All problems
+            All
+          </HeaderGlobalAction>
+          <HeaderGlobalAction
+            onClick={navigateToRecentProblems}
+            className="nav__link"
+            aria-label="Recent problems"
+          >
+            Recent
+          </HeaderGlobalAction>
+          <HeaderGlobalAction
+            onClick={navigateToPopularProblems}
+            className="nav__link"
+            aria-label="Popular problems"
+          >
+            Popular
           </HeaderGlobalAction>
           <HeaderGlobalAction
             onClick={navigateToNewProblem}
             className="nav__link"
             aria-label="New problem"
           >
-            New problem
+            Submit
           </HeaderGlobalAction>
         </HeaderGlobalBar>
       </CarbonHeader>

@@ -1,11 +1,12 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import {
-  Home,
   AllProblems,
+  Home,
   NewProblem,
-  ProblemSolve,
+  PopularProblems,
   Problem,
+  ProblemSolve,
   RecentProblems,
 } from './pages'
 
@@ -22,6 +23,9 @@ export const Routes = () => (
     </Route>
     <Route path="/recent-problems">
       <RecentProblems />
+    </Route>
+    <Route path="/popular-problems">
+      <PopularProblems />
     </Route>
     <Route path="/problems">
       <AllProblems />

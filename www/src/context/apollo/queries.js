@@ -8,6 +8,9 @@ export const ALL_PROBLEMS = gql`
       author
       createdAt
       tags
+      solutions {
+        id
+      }
     }
   }
 `
@@ -20,6 +23,9 @@ export const RECENT_PROBLEMS = gql`
       author
       createdAt
       tags
+      solutions {
+        id
+      }
     }
   }
 `

@@ -1,5 +1,4 @@
 import React, {useMemo} from 'react'
-import {useQuery} from '@apollo/react-hooks'
 import {
   TableContainer,
   Table,
@@ -17,12 +16,11 @@ const HEADERS = [
   {header: 'Author', key: 'author'},
   {header: 'Description', key: 'description'},
   {header: 'Tag(s)', key: 'tags'},
+  {header: 'Solutions', key: 'solutions'},
   {header: 'Published', key: 'createdAt'},
 ]
 
-export const ProblemList = ({title, query}) => {
-  // TODO: abstract queries/mutation to custom hooks
-  const {loading, error, data} = useQuery(query)
+export const ProblemList = ({data, loading, error, title}) => {
   const formattedProblems = useMemo(
     () =>
       data?.problems.map(p => ({
@@ -30,6 +28,7 @@ export const ProblemList = ({title, query}) => {
         author: p?.author || 'Anon',
         createdAt: format(p?.createdAt),
         tags: p?.tags.join(', '),
+        solutions: p?.solutions.length,
       })) || [],
     [data],
   )
