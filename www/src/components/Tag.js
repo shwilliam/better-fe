@@ -7,7 +7,11 @@ export const Tag = ({children, idx, onRemove}) => {
   }, [idx, onRemove])
 
   return (
-    <CarbonTag type="cyan" onClick={handleRemove} filter={!!onRemove}>
+    <CarbonTag
+      type="cyan"
+      onClick={onRemove ? handleRemove : () => {}}
+      filter={!!onRemove}
+    >
       {children}
     </CarbonTag>
   )

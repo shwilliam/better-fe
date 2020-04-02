@@ -15,9 +15,9 @@ import {format} from 'timeago.js'
 
 const HEADERS = [
   {header: 'Author', key: 'author'},
-  {header: 'Tags', key: 'tags'},
-  {header: 'Published', key: 'createdAt'},
   {header: 'Description', key: 'description'},
+  {header: 'Tag(s)', key: 'tags'},
+  {header: 'Published', key: 'createdAt'},
 ]
 
 export const ProblemList = ({title, query}) => {

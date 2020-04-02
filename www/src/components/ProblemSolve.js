@@ -1,8 +1,9 @@
 import React from 'react'
 import {useParams, Link} from 'react-router-dom'
 import {useQuery} from '@apollo/react-hooks'
-import {PROBLEM} from '../context'
 import {Breadcrumb, BreadcrumbItem} from 'carbon-components-react'
+import {PROBLEM} from '../context'
+import {truncate} from '../utils'
 import {NewSolutionForm} from './'
 
 export const ProblemSolve = () => {
@@ -22,7 +23,7 @@ export const ProblemSolve = () => {
           <Link to="/problems">All problems</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link to={`/problems/${id}`}>{description}</Link>
+          <Link to={`/problems/${id}`}>{truncate(description)}</Link>
         </BreadcrumbItem>
       </Breadcrumb>
       <h2 className="title">Post your solution</h2>

@@ -21,7 +21,7 @@ export const NewSolutionForm = ({boilerplate}) => {
   // TODO: handle errors
   // TODO: loading indicator
   const [createSolution] = useMutation(CREATE_SOLUTION, {
-    refetchQueries: ['allProblems'],
+    refetchQueries: ['problem'],
   })
 
   const handleSumbit = useCallback(

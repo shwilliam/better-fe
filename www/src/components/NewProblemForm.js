@@ -21,7 +21,7 @@ export const NewProblemForm = () => {
   const [tags, setTags] = useState([])
   // TODO: loading indicator
   const [createProblem] = useMutation(CREATE_PROBLEM, {
-    refetchQueries: ['allProblems'],
+    refetchQueries: ['allProblems', 'recentProblems'],
   })
 
   const handleSumbit = useCallback(
