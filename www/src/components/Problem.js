@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams, useHistory, Link} from 'react-router-dom'
 import {useQuery} from '@apollo/react-hooks'
-import {Button} from 'carbon-components-react'
+import {Button, Breadcrumb, BreadcrumbItem} from 'carbon-components-react'
 import {PROBLEM} from '../context'
 import {SolutionList, Editor, Preview} from './'
 
@@ -22,13 +22,16 @@ export const Problem = () => {
 
   return (
     <>
-      <header className="page__header">
-        <h2>Problem: {description}</h2>
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <Link to="/problems">All problems</Link>
+        </BreadcrumbItem>
+      </Breadcrumb>
 
-        <Button kind="tertiary" onClick={navigateToNewSolution}>
-          Submit a solution
-        </Button>
-      </header>
+      <h2>{description}</h2>
+      <Button className="title__action" onClick={navigateToNewSolution}>
+        Submit a solution
+      </Button>
 
       <section className="editor">
         <Preview html={html} js={js} css={css} />

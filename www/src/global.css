@@ -1,6 +1,29 @@
-.page__header {
-  display: flex;
-  justify-content: space-between;
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.nav__link {
+  color: #fff;
+  font: inherit;
+  white-space: nowrap;
+  width: auto;
+  padding: 0 1rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.title__action {
   margin-bottom: 2rem;
 }
 
@@ -16,7 +39,15 @@
 .preview__run {
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
+}
+
+.input {
+  margin-bottom: 1rem;
+}
+
+.editor {
+  margin-bottom: 2rem;
 }
 
 .editor__input-container {
@@ -32,6 +63,7 @@
 @media only screen and (min-width: 1080px) {
   .editor {
     display: flex;
+    flex-direction: row-reverse;
   }
 
   .editor > * {
@@ -40,6 +72,6 @@
 
   .editor__input-container {
     border-top: 2px solid #0353e9;
-    border-left: none;
+    border-right: none;
   }
 }

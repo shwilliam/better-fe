@@ -46,6 +46,15 @@ export const NewSolutionForm = ({boilerplate}) => {
   const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
   return (
     <Form onSubmit={handleSumbit}>
+      <TextInput
+        id="new-solution-editor-author-input"
+        className="input"
+        labelText="Author (optional)"
+        placeholder="Jane Doe"
+        value={author}
+        onChange={handleAuthorChange}
+      />
+
       <section className="editor">
         <Preview js={js} html={html} css={css} />
         <Editor
@@ -57,14 +66,6 @@ export const NewSolutionForm = ({boilerplate}) => {
           onCssChange={handleCSSChange}
         />
       </section>
-
-      <TextInput
-        id="new-solution-editor-author-input"
-        labelText="Author (optional)"
-        placeholder="Jane Doe"
-        value={author}
-        onChange={handleAuthorChange}
-      />
 
       <div className="submit__actions">
         <Button type="submit">Submit</Button>

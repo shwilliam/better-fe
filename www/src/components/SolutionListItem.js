@@ -48,7 +48,11 @@ export const SolutionListItem = ({
 
   return (
     <>
-      <TableExpandRow onExpand={toggleOpen} isExpanded={open}>
+      <TableExpandRow
+        onExpand={toggleOpen}
+        isExpanded={open}
+        ariaLabel="Solution details"
+      >
         <TableCell>{author}</TableCell>
         <TableCell>{timeAgo}</TableCell>
         <TableCell>{upVotes}</TableCell>

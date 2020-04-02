@@ -50,11 +50,12 @@ export const NewProblemForm = () => {
 
   return (
     <>
-      <h2>New Problem</h2>
+      <h2 className="title">New Problem</h2>
 
       <Form onSubmit={handleSumbit}>
         <TextInput
           id="new-problem-editor-author-input"
+          className="input"
           labelText="Author (optional)"
           placeholder="Jane Doe"
           value={author}
@@ -62,6 +63,7 @@ export const NewProblemForm = () => {
         />
         <TextInput
           id="new-problem-editor-description-input"
+          className="input"
           labelText="Description"
           placeholder="Center div in div"
           value={description}

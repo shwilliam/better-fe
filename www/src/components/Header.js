@@ -2,15 +2,10 @@ import React, {useCallback} from 'react'
 import {useHistory} from 'react-router-dom'
 import {
   Header as CarbonHeader,
-  HeaderContainer,
-  HeaderMenuButton,
   HeaderName,
-  HeaderNavigation,
-  HeaderSideNavItems,
-  SideNav,
-  SideNavItems,
   SkipToContent,
-  HeaderMenuItem,
+  HeaderGlobalBar,
+  HeaderGlobalAction,
 } from 'carbon-components-react'
 
 export const Header = () => {
@@ -23,46 +18,36 @@ export const Header = () => {
   }, [history])
 
   return (
-    <HeaderContainer
-      render={({isSideNavExpanded, onClickSideNavExpand}) => (
-        <>
-          <CarbonHeader aria-label="Better FE">
-            <SkipToContent />
-            <HeaderMenuButton
-              aria-label="Open menu"
-              onClick={onClickSideNavExpand}
-              isActive={isSideNavExpanded}
-            />
-            <HeaderName onClick={navigateToProblems} prefix="Better">
-              [FE]
-            </HeaderName>
-            <HeaderNavigation aria-label="Better [FE]">
-              <HeaderMenuItem href="#" onClick={navigateToProblems}>
-                Problems
-              </HeaderMenuItem>
-              <HeaderMenuItem href="#" onClick={navigateToNewProblem}>
-                New problem
-              </HeaderMenuItem>
-            </HeaderNavigation>
-            <SideNav
-              aria-label="Side navigation"
-              expanded={isSideNavExpanded}
-              isPersistent={false}
-            >
-              <SideNavItems>
-                <HeaderSideNavItems>
-                  <HeaderMenuItem href="#" onClick={navigateToProblems}>
-                    Problems
-                  </HeaderMenuItem>
-                  <HeaderMenuItem href="#" onClick={navigateToNewProblem}>
-                    New problem
-                  </HeaderMenuItem>
-                </HeaderSideNavItems>
-              </SideNavItems>
-            </SideNav>
-          </CarbonHeader>
-        </>
-      )}
-    />
+    <>
+      <h1 className="sr-only" id="site-title">
+        Better FE
+      </h1>
+      <CarbonHeader aria-labelledby="site-title">
+        <SkipToContent />
+        <HeaderName
+          className="clickable"
+          onClick={navigateToProblems}
+          prefix="Better"
+        >
+          [FE]
+        </HeaderName>
+        <HeaderGlobalBar>
+          <HeaderGlobalAction
+            onClick={navigateToProblems}
+            className="nav__link"
+            aria-label="Problems"
+          >
+            Problems
+          </HeaderGlobalAction>
+          <HeaderGlobalAction
+            onClick={navigateToNewProblem}
+            className="nav__link"
+            aria-label="New problem"
+          >
+            New problem
+          </HeaderGlobalAction>
+        </HeaderGlobalBar>
+      </CarbonHeader>
+    </>
   )
 }
