@@ -8,6 +8,7 @@ import {
   TableHeader,
   DataTable,
   TableCell,
+  DataTableSkeleton,
 } from 'carbon-components-react'
 import {ProblemListItem} from './'
 import {format} from 'timeago.js'
@@ -33,8 +34,13 @@ export const ProblemList = ({data, loading, error, title}) => {
     [data],
   )
 
-  if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
+  if (loading)
+    return (
+      <TableContainer title={title}>
+        <DataTableSkeleton headers={HEADERS} rowCount={5} />
+      </TableContainer>
+    )
 
   return (
     <DataTable
