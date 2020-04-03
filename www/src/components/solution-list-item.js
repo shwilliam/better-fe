@@ -9,6 +9,7 @@ import {
 } from 'carbon-components-react'
 import {UPVOTE_SOLUTION, DOWNVOTE_SOLUTION} from '../context'
 import {Preview, Editor} from './'
+import {useLocalLikes} from '../hooks'
 
 export const SolutionListItem = ({
   id,
@@ -18,6 +19,7 @@ export const SolutionListItem = ({
   createdAt,
   code,
 }) => {
+  const [likes, addLike] = useLocalLikes()
   const [open, setOpen] = useState(false)
   const toggleOpen = useCallback(() => {
     setOpen(s => !s)
@@ -34,17 +36,19 @@ export const SolutionListItem = ({
         id,
         up_votes: upVotes + 1, // FIXME
       },
-    })
-  }, [id, upvoteSolution, upVotes])
+    }).then(() => addLike(id))
+  }, [id, upvoteSolution, upVotes, addLike])
   const downvote = useCallback(() => {
+    addLike(id)
     downvoteSolution({
       variables: {
         id,
         down_votes: downVotes + 1, // FIXME
       },
-    })
-  }, [id, downvoteSolution, downVotes])
+    }).then(() => addLike(id))
+  }, [id, downvoteSolution, downVotes, addLike])
   const timeAgo = useMemo(() => format(createdAt), [createdAt])
+  const isLiked = useMemo(() => likes.includes(id), [likes, id])
 
   return (
     <>
@@ -65,10 +69,12 @@ export const SolutionListItem = ({
         </section>
 
         <div className="submit__actions">
-          <Button kind="danger" onClick={downvote}>
+          <Button disabled={isLiked} kind="danger" onClick={downvote}>
             Dislike
           </Button>
-          <Button onClick={upvote}>Like</Button>
+          <Button disabled={isLiked} onClick={upvote}>
+            Like
+          </Button>
         </div>
       </TableExpandedRow>
     </>
