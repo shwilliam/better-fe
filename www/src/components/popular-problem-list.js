@@ -25,6 +25,7 @@ export const PopularProblemList = () => {
     <>
       <ProblemList
         title="Popular problems"
+        description="The most active problems"
         data={formattedData}
         loading={loading}
         error={error}

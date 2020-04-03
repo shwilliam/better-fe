@@ -26,7 +26,7 @@ export const ProblemSolve = () => {
           <Link to={`/problems/${id}`}>{truncate(description)}</Link>
         </BreadcrumbItem>
       </Breadcrumb>
-      <h2 className="title">Post your solution</h2>
+      <h2 className="pad--bottom">Post your solution</h2>
 
       <NewSolutionForm boilerplate={boilerplate} />
     </>

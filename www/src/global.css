@@ -11,6 +11,19 @@
   cursor: pointer;
 }
 
+.pad--bottom {
+  margin-bottom: 2rem;
+}
+
+.pad--top {
+  margin-top: 2.75rem;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .nav__link {
   color: #fff;
   font: inherit;
@@ -19,12 +32,12 @@
   padding: 0 1rem;
 }
 
-.title {
+.page__header {
   margin-bottom: 2rem;
 }
 
-.page__header {
-  margin-bottom: 2rem;
+.page__header-title {
+  margin-bottom: 1.5rem;
 }
 
 .preview {
@@ -49,6 +62,15 @@
 
 .editor {
   margin-bottom: 2rem;
+}
+
+.editor__label {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.32px;
+  color: #393939;
+  vertical-align: baseline;
+  margin-bottom: 0.5rem;
 }
 
 .editor__input-container {
@@ -76,6 +98,7 @@
   font-size: 1.75rem;
   font-weight: 800;
   margin: 2rem 0 1.5rem 0;
+  line-height: 1.5;
 }
 
 .hero__subtitle {

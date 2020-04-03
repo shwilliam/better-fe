@@ -52,7 +52,7 @@ export const NewProblemForm = () => {
 
   return (
     <>
-      <h2 className="title">New Problem</h2>
+      <h2 className="pad--bottom">New Problem</h2>
 
       <Form onSubmit={handleSumbit}>
         <TextInput
@@ -64,6 +64,7 @@ export const NewProblemForm = () => {
           onChange={handleDescriptionChange}
           required
         />
+
         <TextInput
           id="new-problem-editor-author-input"
           className="input"
@@ -72,17 +73,22 @@ export const NewProblemForm = () => {
           value={author}
           onChange={handleAuthorChange}
         />
+
         <TagInput tags={tags} onChange={setTags} />
-        <section className="editor">
-          <Preview js={js} html={html} css={css} />
-          <Editor
-            html={html}
-            js={js}
-            css={css}
-            onHtmlChange={handleHTMLChange}
-            onJsChange={handleJSChange}
-            onCssChange={handleCSSChange}
-          />
+
+        <section>
+          <h3 className="editor__label">Boilerplate (optional)</h3>
+          <div className="editor">
+            <Preview js={js} html={html} css={css} />
+            <Editor
+              html={html}
+              js={js}
+              css={css}
+              onHtmlChange={handleHTMLChange}
+              onJsChange={handleJSChange}
+              onCssChange={handleCSSChange}
+            />
+          </div>
         </section>
 
         <div className="submit__actions">

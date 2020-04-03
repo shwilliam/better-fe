@@ -11,7 +11,10 @@ import {
 import {SolutionListItem} from './'
 
 export const SolutionList = ({data}) => (
-  <TableContainer title="Solutions">
+  <TableContainer
+    title="Solutions"
+    description="Shared solutions sorted by their number of likes"
+  >
     <Table>
       <TableHead>
         <TableRow>

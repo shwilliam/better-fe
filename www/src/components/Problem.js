@@ -30,7 +30,7 @@ export const Problem = () => {
         </Breadcrumb>
 
         <div className="page__header">
-          <div>
+          <div className="page__header-title">
             <h2>{description}</h2>
             <div>
               {tags.map(tag => (
@@ -38,6 +38,7 @@ export const Problem = () => {
               ))}
             </div>
           </div>
+
           <Button onClick={navigateToNewSolution}>Submit a solution</Button>
         </div>
       </header>

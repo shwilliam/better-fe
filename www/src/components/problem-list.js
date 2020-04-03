@@ -21,7 +21,7 @@ const HEADERS = [
   {header: 'Published', key: 'createdAt'},
 ]
 
-export const ProblemList = ({data, loading, error, title}) => {
+export const ProblemList = ({data, loading, error, title, description}) => {
   const formattedProblems = useMemo(
     () =>
       data?.problems.map(p => ({
@@ -37,7 +37,7 @@ export const ProblemList = ({data, loading, error, title}) => {
   if (error) return <p>Error :(</p>
   if (loading)
     return (
-      <TableContainer title={title}>
+      <TableContainer title={title} description={description}>
         <DataTableSkeleton headers={HEADERS} rowCount={5} />
       </TableContainer>
     )
@@ -54,7 +54,11 @@ export const ProblemList = ({data, loading, error, title}) => {
         getTableProps,
         getTableContainerProps,
       }) => (
-        <TableContainer title={title} {...getTableContainerProps()}>
+        <TableContainer
+          title={title}
+          description={description}
+          {...getTableContainerProps()}
+        >
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>

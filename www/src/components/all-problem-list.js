@@ -10,6 +10,7 @@ export const AllProblemList = () => {
   return (
     <ProblemList
       title="All problems"
+      description="An exhaustive list of all problems posted"
       data={data}
       loading={loading}
       error={error}

@@ -16,6 +16,7 @@ export const RecentProblemList = () => {
     <>
       <ProblemList
         title="Recent problems"
+        description="The most recently posted problems"
         data={data}
         loading={loading}
         error={error}
