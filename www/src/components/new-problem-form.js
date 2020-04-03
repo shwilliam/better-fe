@@ -1,13 +1,16 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_PROBLEM} from '../context'
-import {useEditor, useLocalName} from '../hooks'
+import {useEditor, useLocalName, useInput, useLocalStorage} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
 import {Editor, Preview, TagInput} from './'
 
 export const NewProblemForm = () => {
   const history = useHistory()
+  const [localFormData, setLocalFormData, clearLocalFormData] = useLocalStorage(
+    '__new-problem-form-data',
+  )
   const {
     html,
     js,
@@ -15,11 +18,17 @@ export const NewProblemForm = () => {
     handleHTMLChange,
     handleJSChange,
     handleCSSChange,
-  } = useEditor()
+  } = useEditor({
+    html: localFormData?.html || '',
+    js: localFormData?.js || '',
+    css: localFormData?.css || '',
+  })
   const [localName, setLocalName] = useLocalName()
-  const [author, setAuthor] = useState(localName)
-  const [description, setDescription] = useState('')
-  const [tags, setTags] = useState([])
+  const [author, handleAuthorChange] = useInput(localName)
+  const [description, handleDescriptionChange] = useInput(
+    localFormData?.description || '',
+  )
+  const [tags, setTags] = useState(localFormData?.tags || [])
   // TODO: loading indicator
   const [createProblem] = useMutation(CREATE_PROBLEM, {
     refetchQueries: ['allProblems', 'recentProblems'],
@@ -30,6 +39,7 @@ export const NewProblemForm = () => {
       e.preventDefault()
 
       setLocalName(author)
+      clearLocalFormData()
 
       createProblem({
         variables: {
@@ -54,14 +64,23 @@ export const NewProblemForm = () => {
       tags,
       history,
       setLocalName,
+      clearLocalFormData,
     ],
   )
 
-  const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
-  const handleDescriptionChange = useCallback(
-    e => setDescription(e.target.value),
-    [],
-  )
+  useEffect(() => {
+    const newFormData = {
+      description,
+      tags,
+      html,
+      js,
+      css,
+    }
+
+    if (JSON.stringify(localFormData) !== JSON.stringify(newFormData)) {
+      setLocalFormData(newFormData)
+    }
+  }, [setLocalFormData, localFormData, description, tags, html, js, css])
 
   return (
     <>
