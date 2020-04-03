@@ -1,13 +1,9 @@
-import {useState, useCallback} from 'react'
+import {useInput} from './use-input'
 
 export const useEditor = boilerplate => {
-  const [html, setHTML] = useState(boilerplate?.html || '')
-  const [js, setJS] = useState(boilerplate?.js || '')
-  const [css, setCSS] = useState(boilerplate?.css || '')
-
-  const handleHTMLChange = useCallback(e => setHTML(e.target.value), [])
-  const handleJSChange = useCallback(e => setJS(e.target.value), [])
-  const handleCSSChange = useCallback(e => setCSS(e.target.value), [])
+  const [html, handleHTMLChange] = useInput(boilerplate?.html || '')
+  const [js, handleJSChange] = useInput(boilerplate?.js || '')
+  const [css, handleCSSChange] = useInput(boilerplate?.css || '')
 
   return {
     html,

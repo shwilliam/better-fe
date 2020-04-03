@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_SOLUTION} from '../context'
-import {useEditor, useLocalName} from '../hooks'
+import {useEditor, useLocalName, useInput} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
 import {Preview, Editor} from './'
 
@@ -18,7 +18,7 @@ export const NewSolutionForm = ({boilerplate}) => {
     handleCSSChange,
   } = useEditor(boilerplate)
   const [localName, setLocalName] = useLocalName()
-  const [author, setAuthor] = useState(localName)
+  const [author, handleAuthorChange] = useInput(localName)
   // TODO: handle errors
   // TODO: loading indicator
   const [createSolution] = useMutation(CREATE_SOLUTION, {
@@ -46,7 +46,6 @@ export const NewSolutionForm = ({boilerplate}) => {
     [createSolution, author, html, js, css, id, history, setLocalName],
   )
 
-  const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
   return (
     <Form onSubmit={handleSumbit}>
       <TextInput

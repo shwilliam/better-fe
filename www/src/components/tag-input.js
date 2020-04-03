@@ -1,16 +1,14 @@
-import React, {useState, useCallback} from 'react'
+import React, {useCallback} from 'react'
 import {TextInput} from 'carbon-components-react'
+import {useInput} from '../hooks'
 import {Tag} from './'
 
 export const TagInput = ({tags, onChange}) => {
-  const [tagInput, setTagInput] = useState('')
-  const handleChange = useCallback(e => {
-    setTagInput(e.target.value)
-  }, [])
+  const [tagInput, handleChange, clearTagInput] = useInput()
   const addTag = useCallback(() => {
     onChange([...tags, tagInput.toLowerCase()])
-    setTagInput('')
-  }, [onChange, tagInput, tags])
+    clearTagInput()
+  }, [onChange, tagInput, tags, clearTagInput])
   const removeTag = useCallback(
     idx => {
       const tagsCopy = [...tags]

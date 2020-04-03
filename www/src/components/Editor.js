@@ -1,13 +1,14 @@
 import React from 'react'
 import {Tabs, Tab, TextArea, CodeSnippet} from 'carbon-components-react'
+import {noop} from '../utils'
 
 export const Editor = ({
   html,
-  onHtmlChange = () => {},
+  onHtmlChange = noop,
   js,
-  onJsChange = () => {},
+  onJsChange = noop,
   css,
-  onCssChange = () => {},
+  onCssChange = noop,
   readOnly = false,
 }) => (
   <div className="editor__input-container">

@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react'
 import {Tag as CarbonTag} from 'carbon-components-react'
+import {noop} from '../utils'
 
 export const Tag = ({children, idx, onRemove}) => {
   const handleRemove = useCallback(() => {
@@ -9,7 +10,7 @@ export const Tag = ({children, idx, onRemove}) => {
   return (
     <CarbonTag
       type="cyan"
-      onClick={onRemove ? handleRemove : () => {}}
+      onClick={onRemove ? handleRemove : noop}
       filter={!!onRemove}
     >
       {children}
