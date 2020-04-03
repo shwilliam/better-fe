@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_PROBLEM} from '../context'
-import {useEditor} from '../hooks'
+import {useEditor, useLocalName} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
 import {Editor, Preview, TagInput} from './'
 
@@ -16,7 +16,8 @@ export const NewProblemForm = () => {
     handleJSChange,
     handleCSSChange,
   } = useEditor()
-  const [author, setAuthor] = useState('')
+  const [localName, setLocalName] = useLocalName()
+  const [author, setAuthor] = useState(localName)
   const [description, setDescription] = useState('')
   const [tags, setTags] = useState([])
   // TODO: loading indicator
@@ -27,6 +28,8 @@ export const NewProblemForm = () => {
   const handleSumbit = useCallback(
     e => {
       e.preventDefault()
+
+      setLocalName(author)
 
       createProblem({
         variables: {
@@ -41,7 +44,17 @@ export const NewProblemForm = () => {
         history.push('/problems')
       })
     },
-    [createProblem, author, description, html, js, css, tags, history],
+    [
+      createProblem,
+      author,
+      description,
+      html,
+      js,
+      css,
+      tags,
+      history,
+      setLocalName,
+    ],
   )
 
   const handleAuthorChange = useCallback(e => setAuthor(e.target.value), [])
