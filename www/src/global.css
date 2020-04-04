@@ -60,6 +60,14 @@ main {
   margin-bottom: 1rem;
 }
 
+.tag-input__input {
+  margin-bottom: 0.25rem;
+}
+
+.tag-input__tags {
+  margin-bottom: 1rem;
+}
+
 .editor {
   margin-bottom: 2rem;
 }

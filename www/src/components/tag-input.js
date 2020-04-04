@@ -39,7 +39,7 @@ export const TagInput = ({tags, onChange}) => {
     <>
       <TextInput
         id="tag-input"
-        className="input"
+        className="input tag-input__input"
         labelText="Tags (optional)"
         placeholder="Layout, animation..."
         onKeyDown={checkForSubmitKey}
@@ -47,7 +47,7 @@ export const TagInput = ({tags, onChange}) => {
         onChange={handleChange}
       />
 
-      <div>
+      <div className="tag-input__tags">
         {tags.map((tag, idx) => (
           <Tag key={tag} idx={idx} onRemove={removeTag}>
             {tag}
