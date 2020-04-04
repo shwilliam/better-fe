@@ -20,7 +20,7 @@
 }
 
 main {
-  max-width: 1200px;
+  max-width: 1337px;
   margin: 0 auto;
 }
 
@@ -74,8 +74,18 @@ main {
 }
 
 .editor__input-container {
+  position: relative;
   border: 2px solid #0353e9;
   border-top: none;
+  overflow-x: scroll;
+}
+
+.editor__input-theme {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  z-index: 999;
 }
 
 .submit__actions {
@@ -113,14 +123,13 @@ main {
   }
 }
 
-@media only screen and (min-width: 1080px) {
+@media only screen and (min-width: 1300px) {
   .preview {
     margin-bottom: 0;
   }
 
   .editor {
     display: flex;
-    flex-direction: row-reverse;
   }
 
   .editor > * {
@@ -129,6 +138,6 @@ main {
 
   .editor__input-container {
     border-top: 2px solid #0353e9;
-    border-right: none;
+    border-left: none;
   }
 }
