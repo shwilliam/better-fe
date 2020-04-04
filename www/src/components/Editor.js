@@ -1,8 +1,8 @@
-import React, {useState, useCallback} from 'react'
+import React from 'react'
 import AceEditor from 'react-ace'
 import {Tabs, Tab, CodeSnippet, Dropdown} from 'carbon-components-react'
 import {noop} from '../utils'
-import {useLocalCodeTheme} from '../hooks'
+import {useEditor} from '../hooks'
 
 // code editor deps
 import 'ace-builds/src-min-noconflict/ext-language_tools'
@@ -22,58 +22,6 @@ import 'ace-builds/src-noconflict/theme-solarized_dark'
 import 'ace-builds/src-noconflict/theme-solarized_light'
 import 'ace-builds/src-noconflict/theme-terminal'
 
-const THEMES = [
-  {
-    label: 'Tomorrow',
-    value: 'tomorrow',
-  },
-  {
-    label: 'Monokai',
-    value: 'monokai',
-  },
-  {
-    label: 'GitHub',
-    value: 'github',
-  },
-  {
-    label: 'Kuroir',
-    value: 'kuroir',
-  },
-  {
-    label: 'Xcode',
-    value: 'xcode',
-  },
-  {
-    label: 'Text mate',
-    value: 'textmate',
-  },
-  {
-    label: 'Solarized dark',
-    value: 'solarized_dark',
-  },
-  {
-    label: 'Solarized light',
-    value: 'solarized_light',
-  },
-  {
-    label: 'Terminal',
-    value: 'terminal',
-  },
-]
-
-const THEME_OPTIONS = {
-  fontSize: 15,
-  tabSize: 2,
-  maxLines: 15,
-  minLines: 15,
-  enableBasicAutocompletion: true,
-  enableLiveAutocompletion: true,
-  enableSnippets: true,
-  editorProps: {
-    $blockScrolling: Infinity,
-  },
-}
-
 export const Editor = ({
   html,
   onHtmlChange = noop,
@@ -83,18 +31,7 @@ export const Editor = ({
   onCssChange = noop,
   readOnly = false,
 }) => {
-  const [localTheme, setLocalTheme] = useLocalCodeTheme()
-  const [activeTheme, setActiveTheme] = useState(THEMES[localTheme])
-  const handleChangeTheme = useCallback(
-    selection => {
-      const theme = selection?.selectedItem
-      if (theme) {
-        setLocalTheme(THEMES.findIndex(({value}) => value === theme.value))
-        setActiveTheme(theme)
-      }
-    },
-    [setLocalTheme],
-  )
+  const {theme, allThemes, handleChangeTheme} = useEditor()
 
   return (
     <div className="editor__input-container">
@@ -103,10 +40,10 @@ export const Editor = ({
           className="editor__input-theme"
           label="Theme"
           id="editor__input-theme"
-          items={THEMES}
+          items={allThemes}
           itemToString={item => item?.label}
           onChange={handleChangeTheme}
-          initialSelectedItem={activeTheme}
+          initialSelectedItem={theme}
         />
       )}
       <Tabs>
@@ -119,7 +56,7 @@ export const Editor = ({
             <AceEditor
               name="html-editor"
               mode="html"
-              theme={activeTheme.value}
+              theme={theme.value}
               value={html}
               onChange={onHtmlChange}
               {...THEME_OPTIONS}
@@ -135,7 +72,7 @@ export const Editor = ({
             <AceEditor
               name="js-editor"
               mode="javascript"
-              theme={activeTheme.value}
+              theme={theme.value}
               value={js}
               onChange={onJsChange}
               {...THEME_OPTIONS}
@@ -151,7 +88,7 @@ export const Editor = ({
             <AceEditor
               name="css-editor"
               mode="css"
-              theme={activeTheme.value}
+              theme={theme.value}
               value={css}
               onChange={onCssChange}
               {...THEME_OPTIONS}
@@ -161,4 +98,17 @@ export const Editor = ({
       </Tabs>
     </div>
   )
+}
+
+const THEME_OPTIONS = {
+  fontSize: 15,
+  tabSize: 2,
+  maxLines: 15,
+  minLines: 15,
+  enableBasicAutocompletion: true,
+  enableLiveAutocompletion: true,
+  enableSnippets: true,
+  editorProps: {
+    $blockScrolling: Infinity,
+  },
 }

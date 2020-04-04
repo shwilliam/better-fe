@@ -1,5 +1,4 @@
-import React, {useCallback} from 'react'
-import {useHistory} from 'react-router-dom'
+import React from 'react'
 import {
   Header as CarbonHeader,
   HeaderName,
@@ -7,24 +6,16 @@ import {
   HeaderGlobalBar,
   HeaderGlobalAction,
 } from 'carbon-components-react'
+import {useNavigation} from '../hooks'
 
 export const Header = () => {
-  const history = useHistory()
-  const navigateToHome = useCallback(() => {
-    history.push('/')
-  }, [history])
-  const navigateToRecentProblems = useCallback(() => {
-    history.push('/problems/recent')
-  }, [history])
-  const navigateToPopularProblems = useCallback(() => {
-    history.push('/problems/popular')
-  }, [history])
-  const navigateToProblems = useCallback(() => {
-    history.push('/problems')
-  }, [history])
-  const navigateToNewProblem = useCallback(() => {
-    history.push('/problem/new')
-  }, [history])
+  const {
+    navigateToHome,
+    navigateToRecentProblems,
+    navigateToPopularProblems,
+    navigateToProblems,
+    navigateToNewProblem,
+  } = useNavigation()
 
   return (
     <>

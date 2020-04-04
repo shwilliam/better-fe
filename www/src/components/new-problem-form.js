@@ -1,13 +1,18 @@
 import React, {useCallback, useState, useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_PROBLEM} from '../context'
-import {useEditor, useLocalName, useInput, useLocalStorage} from '../hooks'
+import {
+  useEditor,
+  useLocalName,
+  useInput,
+  useLocalStorage,
+  useNavigation,
+} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
 import {Editor, Preview, TagInput} from './'
 
 export const NewProblemForm = () => {
-  const history = useHistory()
+  const {navigateToProblems} = useNavigation()
   const [localFormData, setLocalFormData, clearLocalFormData] = useLocalStorage(
     '__new-problem-form-data',
   )
@@ -50,9 +55,7 @@ export const NewProblemForm = () => {
           css,
           tags,
         },
-      }).then(() => {
-        history.push('/problems')
-      })
+      }).then(navigateToProblems)
     },
     [
       createProblem,
@@ -62,9 +65,9 @@ export const NewProblemForm = () => {
       js,
       css,
       tags,
-      history,
       setLocalName,
       clearLocalFormData,
+      navigateToProblems,
     ],
   )
 

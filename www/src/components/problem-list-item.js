@@ -1,12 +1,9 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {TableRow} from 'carbon-components-react'
-import {useHistory} from 'react-router-dom'
+import {useNavigation} from '../hooks'
 
-export const ProblemListItem = ({link, children, ...props}) => {
-  const history = useHistory()
-  const navigateToProblem = useCallback(() => {
-    history.push(link)
-  }, [history, link])
+export const ProblemListItem = ({id, children, ...props}) => {
+  const {navigateToProblem} = useNavigation(id)
 
   return (
     <TableRow onClick={navigateToProblem} className="clickable" {...props}>

@@ -1,14 +1,14 @@
 import React, {useCallback} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_SOLUTION} from '../context'
-import {useEditor, useLocalName, useInput} from '../hooks'
+import {useEditor, useLocalName, useInput, useNavigation} from '../hooks'
 import {Button, Form, TextInput} from 'carbon-components-react'
 import {Preview, Editor} from './'
 
 export const NewSolutionForm = ({boilerplate}) => {
+  const {navigateToProblems} = useNavigation()
   const {id} = useParams()
-  const history = useHistory()
   const {
     html,
     js,
@@ -39,11 +39,18 @@ export const NewSolutionForm = ({boilerplate}) => {
           js,
           css,
         },
-      }).then(() => {
-        history.push('/problems')
-      })
+      }).then(navigateToProblems)
     },
-    [createSolution, author, html, js, css, id, history, setLocalName],
+    [
+      createSolution,
+      author,
+      html,
+      js,
+      css,
+      id,
+      setLocalName,
+      navigateToProblems,
+    ],
   )
 
   return (

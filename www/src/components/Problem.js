@@ -1,18 +1,16 @@
-import React, {useCallback} from 'react'
-import {useParams, useHistory, Link} from 'react-router-dom'
+import React from 'react'
+import {useParams, Link} from 'react-router-dom'
 import {useQuery} from '@apollo/react-hooks'
 import {Button, Breadcrumb, BreadcrumbItem} from 'carbon-components-react'
 import {PROBLEM} from '../context'
+import {useNavigation} from '../hooks'
 import {SolutionList, Editor, Preview, Tag} from './'
 
 export const Problem = () => {
-  const history = useHistory()
   const {id} = useParams()
+  const {navigateToNewSolution} = useNavigation(id)
   // TODO: abstract queries/mutation to custom hooks
   const {loading, error, data} = useQuery(PROBLEM, {variables: {id}})
-  const navigateToNewSolution = useCallback(() => {
-    history.push(`/problems/${id}/solve`)
-  }, [history, id])
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>

@@ -75,10 +75,7 @@ export const ProblemList = ({data, loading, error, title, description}) => {
             </TableHead>
             <TableBody>
               {rows.map(row => (
-                <ProblemListItem
-                  link={`/problems/${row.id}`}
-                  {...getRowProps({row})}
-                >
+                <ProblemListItem id={row.id} {...getRowProps({row})}>
                   {row.cells.map(({id, value}) => (
                     <TableCell key={id}>{value}</TableCell>
                   ))}

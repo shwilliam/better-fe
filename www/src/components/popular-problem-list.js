@@ -1,13 +1,13 @@
-import React, {useCallback, useMemo} from 'react'
+import React, {useMemo} from 'react'
 import {useQuery} from '@apollo/react-hooks'
-import {useHistory} from 'react-router-dom'
 import {Button} from 'carbon-components-react'
-import {ALL_PROBLEMS} from '../context'
 import {sortBySolutionsLength} from '../utils'
+import {ALL_PROBLEMS} from '../context'
+import {useNavigation} from '../hooks'
 import {ProblemList} from './'
 
 export const PopularProblemList = () => {
-  const history = useHistory()
+  const {navigateToAllProblems} = useNavigation()
   // TODO: abstract queries/mutation to custom hooks
   const {loading, error, data} = useQuery(ALL_PROBLEMS)
   const formattedData = useMemo(() => {
@@ -17,9 +17,6 @@ export const PopularProblemList = () => {
       }
     } else return null
   }, [data])
-  const navigateToAllProblems = useCallback(() => {
-    history.push('/problems')
-  }, [history])
 
   return (
     <>

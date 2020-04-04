@@ -1,12 +1,9 @@
-import React, {useCallback} from 'react'
-import {useHistory} from 'react-router-dom'
+import React from 'react'
+import {useNavigation} from '../../hooks'
 import {Button} from 'carbon-components-react'
 
 export const Home = () => {
-  const history = useHistory()
-  const navigateToPopularProblems = useCallback(() => {
-    history.push('/problems/popular')
-  }, [history])
+  const {navigateToPopularProblems} = useNavigation()
 
   return (
     <section className="hero">

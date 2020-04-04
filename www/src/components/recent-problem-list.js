@@ -1,15 +1,12 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {useQuery} from '@apollo/react-hooks'
-import {useHistory} from 'react-router-dom'
 import {Button} from 'carbon-components-react'
 import {RECENT_PROBLEMS} from '../context'
+import {useNavigation} from '../hooks'
 import {ProblemList} from './'
 
 export const RecentProblemList = () => {
-  const history = useHistory()
-  const navigateToAllProblems = useCallback(() => {
-    history.push('/problems')
-  }, [history])
+  const {navigateToAllProblems} = useNavigation()
   const {loading, error, data} = useQuery(RECENT_PROBLEMS)
 
   return (
