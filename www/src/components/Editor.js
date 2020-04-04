@@ -2,6 +2,7 @@ import React, {useState, useCallback} from 'react'
 import AceEditor from 'react-ace'
 import {Tabs, Tab, CodeSnippet, Dropdown} from 'carbon-components-react'
 import {noop} from '../utils'
+import {useLocalCodeTheme} from '../hooks'
 
 // code editor deps
 import 'ace-builds/src-min-noconflict/ext-language_tools'
@@ -23,16 +24,16 @@ import 'ace-builds/src-noconflict/theme-terminal'
 
 const THEMES = [
   {
+    label: 'Tomorrow',
+    value: 'tomorrow',
+  },
+  {
     label: 'Monokai',
     value: 'monokai',
   },
   {
     label: 'GitHub',
     value: 'github',
-  },
-  {
-    label: 'Tomorrow',
-    value: 'tomorrow',
   },
   {
     label: 'Kuroir',
@@ -82,12 +83,18 @@ export const Editor = ({
   onCssChange = noop,
   readOnly = false,
 }) => {
-  const [activeTheme, setActiveTheme] = useState(THEMES[2])
-  const handleChangeTheme = useCallback(selection => {
-    if (selection?.selectedItem) {
-      setActiveTheme(selection?.selectedItem)
-    }
-  }, [])
+  const [localTheme, setLocalTheme] = useLocalCodeTheme()
+  const [activeTheme, setActiveTheme] = useState(THEMES[localTheme])
+  const handleChangeTheme = useCallback(
+    selection => {
+      const theme = selection?.selectedItem
+      if (theme) {
+        setLocalTheme(THEMES.findIndex(({value}) => value === theme.value))
+        setActiveTheme(theme)
+      }
+    },
+    [setLocalTheme],
+  )
 
   return (
     <div className="editor__input-container">
