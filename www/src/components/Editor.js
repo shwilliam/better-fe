@@ -105,6 +105,7 @@ const THEME_OPTIONS = {
   tabSize: 2,
   maxLines: 15,
   minLines: 15,
+  width: '100%',
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
   enableSnippets: true,
